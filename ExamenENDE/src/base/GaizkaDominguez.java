@@ -24,21 +24,11 @@ public class GaizkaDominguez {
 
             switch (opcion) {
                 case 1:
-                    System.out.print("Introduce el monto a ingresar: ");
-                    double ingreso = sc.nextDouble();
-                    saldo = saldo + ingreso;
-                    System.out.println("Has ingresado " + ingreso + " €. Nuevo saldo: " + saldo + " €");
+                    saldo = actualizarSaldo(opcion, sc, saldo);
                     break;
 
                 case 2:
-                    System.out.print("Introduce el monto a retirar: ");
-                    double retiro = sc.nextDouble();
-                    if (retiro <= saldo) {
-                        saldo = saldo - retiro;
-                        System.out.println("Has retirado " + retiro + " €. Nuevo saldo: " + saldo + " €");
-                    } else {
-                        System.out.println("Saldo insuficiente.");
-                    }
+                	saldo = actualizarSaldo(opcion, sc, saldo);
                     break;
 
                 case 3:
@@ -59,5 +49,24 @@ public class GaizkaDominguez {
         sc.close();
         
         //comentario para el segundo push
+    }
+    
+    public static double actualizarSaldo(int opcionNum, Scanner sc, double saldo) {
+    	if(opcionNum == 1) {
+    		System.out.print("Introduce el monto a ingresar: ");
+            double ingreso = sc.nextDouble();
+            saldo = saldo + ingreso;
+            System.out.println("Has ingresado " + ingreso + " €. Nuevo saldo: " + saldo + " €");
+    	} else if (opcionNum == 2) {
+    		System.out.print("Introduce el monto a retirar: ");
+            double retiro = sc.nextDouble();
+            if (retiro <= saldo) {
+                saldo = saldo - retiro;
+                System.out.println("Has retirado " + retiro + " €. Nuevo saldo: " + saldo + " €");
+            } else {
+                System.out.println("Saldo insuficiente.");
+            }
+    	}
+    	return saldo;
     }
 }
